@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompts by Tezza</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .prompt-box {
+      background: #151515;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    .prompt-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #0d0d0d;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      user-select: text;
+    }
+    button {
+      margin-top: 12px;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #e0e0e0;
+    }
+    .hint {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Prompts by Tezza</h1>
+  <p>Página oficial para copiar prompts • Uso pessoal</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+    <div class="prompt-title">TEZZA PROMPTS
+    COLABORADOR IZACK JIMENEZ </div>
+
+<pre id="prompt1">(TEZZA PROMPTS)
+marque @tezza.vu @jimenez.vu
+site: /dreamina.capcut.com/
+
+  
+CAMERA & COMPOSITION
+Medium shot leaning toward a medium close-up, framed from mid-torso to head. The subject is centered with slight rightward framing, creating a balanced yet natural composition. Shot with a shallow depth of field (approx. 85mm lens look), softly blurring the background. Eye-level camera angle enhances realism and viewer connection.
+
+POSE & BODY POSITIONING
+The subject is seated in a relaxed reclined position on an outdoor lounge chair. His torso is slightly angled toward the camera, with one arm resting naturally while the other lifts a spoon. The posture is casual yet confident, emphasizing upper body definition.
+
+HEAD POSITION & GAZE
+Head slightly tilted forward and subtly angled toward the camera. Eyes are directed straight into the lens, creating a strong and engaging connection with the viewer.
+
+FACIAL EXPRESSION
+Neutral to mildly intense expression. Lips relaxed, slightly parted. The expression conveys calmness with a hint of confidence and quiet charisma.
+
+FACE & IDENTITY
+Young adult male with defined facial structure: sharp jawline, high cheekbones, straight nose, and balanced symmetry. Skin tone is light to medium with warm undertones. Clean-shaven face enhances a youthful and polished appearance.
+
+HAIR
+Short to medium-length dark hair with a natural, slightly tousled texture. Styled with volume on top and loose strands falling organically, giving a casual, effortless look.
+
+ACCESSORIES & DETAILS
+Visible tattoos on both arms, adding personality and visual contrast. The subject holds a spoon in one hand and a small cup (possibly yogurt or dessert) in the other, reinforcing a candid lifestyle moment.
+
+OUTFIT
+Shirtless, emphasizing a relaxed, leisure setting. Wearing light-colored, checkered shorts with a soft, casual fabric suitable for warm weather.
+
+BODY & PHYSIQUE
+Athletic and well-defined upper body. Visible muscle tone in chest, shoulders, and arms without appearing overly exaggerated. Natural proportions with a healthy, fit aesthetic.
+
+SKIN & REALISM
+Skin appears smooth with natural texture and subtle highlights from sunlight. Realistic rendering with slight sheen from outdoor lighting, enhancing dimensionality.
+
+LIGHTING
+Bright natural daylight, likely midday sun. Strong directional lighting creates soft shadows and highlights across the body. Even illumination with high clarity and vibrant contrast.
+
+ENVIRONMENT
+Outdoor lakeside or waterfront setting. Background includes calm blue water, greenery, and white patio furniture. The setting suggests a peaceful, upscale leisure location.
+
+MOOD & AESTHETIC
+Relaxed, summery, and lifestyle-oriented mood. Clean, fresh, and slightly aspirational aesthetic, evoking vacation or leisure time.
+
+STYLE & RENDER QUALITY
+Ultra-realistic photographic style. High resolution with crisp details, natural color grading, and cinematic depth of field. Balanced realism with subtle enhancement for visual appeal.
+
+
+--- 
+</pre>
+
+    <button onclick="copyFallback('prompt1')">Copiar Prompt</button>
+    <div class="hint">Se o botão não funcionar, selecione o texto e copie manualmente.</div>
+  </div>
+
+</div>
+
+<footer>
+  © Prompts by Tezza — Conteúdo protegido. Não redistribuir.
+</footer>
+
+<script>
+  function copyFallback(id) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    alert('Prompt copiado!');
+  }
+</script>
+
+</body>
+</html>
