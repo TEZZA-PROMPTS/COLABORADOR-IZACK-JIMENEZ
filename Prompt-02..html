@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompts by Tezza</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .prompt-box {
+      background: #151515;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    .prompt-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #0d0d0d;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      user-select: text;
+    }
+    button {
+      margin-top: 12px;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #e0e0e0;
+    }
+    .hint {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Prompts by Tezza</h1>
+  <p>Página oficial para copiar prompts • Uso pessoal</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+    <div class="prompt-title">TEZZA PROMPTS
+    COLABORADOR IZACK JIMENEZ </div>
+
+<pre id="prompt1">(TEZZA PROMPTS)
+marque @tezza.vu @jimenez.vu
+site: /dreamina.capcut.com/
+
+
+
+Ultra-realistic cinematic male portrait — Blender Cycles render, highly detailed skin texture, natural lighting, photorealism, 8K UHD, vertical 1080x1920
+
+
+---
+
+CAMERA & COMPOSITION →
+Medium full-body shot, subject framed from feet to head while seated partially inside a car. Slight off-center composition, emphasizing depth with the open car door framing the body. Shot with a telephoto lens (~85mm), creating subtle background compression and shallow depth of field. Camera positioned slightly below eye level, adding a powerful and dominant perspective.
+
+
+---
+
+POSE & BODY POSITIONING →
+Subject seated sideways in the driver’s seat with the car door open. One leg extended outward and resting on the ground, the other bent inside the car. Torso slightly leaned forward, emphasizing upper body definition. One arm resting casually on the thigh, the other positioned near the hip/seat for balance. Posture relaxed yet confident, showcasing muscular structure.
+
+
+---
+
+HEAD POSITION & GAZE →
+Head turned to the side, looking away from the camera. Chin slightly lowered, creating a contemplative and focused direction of gaze.
+
+
+---
+
+FACIAL EXPRESSION →
+Neutral and composed expression, lips relaxed, conveying calm confidence and seriousness without tension.
+
+
+---
+
+FACE & IDENTITY →
+Well-defined facial structure with balanced proportions. Prominent jawline, straight nose, and harmonious symmetry. Smooth skin texture with realistic detailing.
+
+
+---
+
+HAIR →
+Short to medium length hair, naturally styled with slight volume and subtle texture. Lightly tousled appearance.
+
+
+---
+
+ACCESSORIES & DETAILS →
+No visible accessories. Natural body details emphasized, including muscle definition and skin texture. Car interior visible as contextual element.
+
+
+---
+
+OUTFIT →
+Loose-fitting sweatpants with visible fabric texture and drawstring waistband. Casual sneakers with clean design. Upper body uncovered.
+
+
+---
+
+BODY & PHYSIQUE →
+Highly muscular and athletic build. Broad shoulders, defined chest, prominent arms, and visible abdominal muscles. Low body fat percentage with strong anatomical definition.
+
+
+---
+ 
+</pre>
+
+    <button onclick="copyFallback('prompt1')">Copiar Prompt</button>
+    <div class="hint">Se o botão não funcionar, selecione o texto e copie manualmente.</div>
+  </div>
+
+</div>
+
+<footer>
+  © Prompts by Tezza — Conteúdo protegido. Não redistribuir.
+</footer>
+
+<script>
+  function copyFallback(id) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    alert('Prompt copiado!');
+  }
+</script>
+
+</body>
+</html>
