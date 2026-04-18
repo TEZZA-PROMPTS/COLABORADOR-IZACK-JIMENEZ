@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompts by Tezza</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .prompt-box {
+      background: #151515;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    .prompt-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #0d0d0d;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      user-select: text;
+    }
+    button {
+      margin-top: 12px;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #e0e0e0;
+    }
+    .hint {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Prompts by Tezza</h1>
+  <p>Página oficial para copiar prompts • Uso pessoal</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+    <div class="prompt-title">TEZZA PROMPTS
+    COLABORADOR IZACK JIMENEZ </div>
+
+<pre id="prompt1">(TEZZA PROMPTS)
+marque @tezza.vu @jimenez.vu
+site: /dreamina.capcut.com/
+
+  Ultra-realistic cinematic male portrait — Blender Cycles render
+
+CAMERA & COMPOSITION
+Vertical close-to-medium selfie-style portrait framed from mid-thigh to head. Camera positioned above eye level at arm’s length, creating a natural high-angle perspective typical of handheld shots. Slight lens distortion from proximity enhances realism. Subject centered with gym environment visible in background. Shallow depth of field maintaining focus on subject.
+
+POSE & BODY POSITIONING
+Seated relaxed pose on a green exercise ball. One leg bent upward while the other extends slightly outward. Torso naturally angled with one arm extended forward holding the camera. Opposite arm resting casually on the leg. Posture informal, confident, and candid.
+
+HEAD POSITION & GAZE
+Head slightly tilted upward toward the camera due to high-angle capture. Eyes looking directly into the lens, creating an engaging and friendly connection. Neck relaxed and naturally aligned.
+
+FACIAL EXPRESSION
+Soft smiling expression with slightly parted lips showing teeth. Facial muscles relaxed, conveying warmth, approachability, and confidence. Natural candid gym-selfie emotion.
+
+FACE & IDENTITY
+Young man with symmetrical masculine facial structure. Defined jawline, smooth contours, straight nose bridge, and almond-shaped dark eyes. Natural full eyebrows with clean shape. Skin smooth with realistic tonal variation and healthy appearance.
+
+HAIR
+Short dark brown hair mostly covered by a black cap. Visible edges show clean, natural hairline. Hair texture appears straight with subtle density.
+
+ACCESSORIES & DETAILS
+Black cap with visible “alo” logo. Small black stud earring. Gold chain necklace around neck. Visible tattoos on arms adding personality and detail. One earbud resting near the neck area.
+
+OUTFIT
+White sleeveless athletic tank top with lightweight breathable fabric. Black athletic shorts layered over gray compression shorts. White crew socks and white sneakers. Outfit consistent with gym training attire.
+
+BODY & PHYSIQUE
+Athletic masculine physique with defined arms, shoulders, and legs. Visible muscle tone with natural proportions. Body appears fit and well-conditioned without exaggeration.
+
+SKIN & REALISM
+Ultra-detailed skin rendering with visible pores, subtle sheen from physical activity, and natural color variation. Slight highlights consistent with indoor lighting. Realistic skin response with physically accurate subsurface scattering.
+
+LIGHTING
+Indoor gym lighting with soft overhead illumination. Even light distribution across face and body with mild shadows under limbs and chin. No harsh contrast, maintaining natural realism.
+
+ENVIRONMENT
+Gym interior with visible workout machines, weights, and rubber flooring. Equipment arranged in the background with slight blur due to depth of field. Functional fitness setting reinforcing lifestyle context.
+
+MOOD & AESTHETIC
+Casual fitness lifestyle aesthetic — energetic, friendly, and authentic. Candid gym moment with modern social media feel. Balanced between realism and editorial presence.
+
+STYLE & RENDER QUALITY
+Ultra-photorealistic Blender Cycles render, cinematic realism, 8K resolution, HDR, razor-sharp focus, realistic skin micro-detail, physically accurate lighting, lifestyle editorial quality, no stylization or artistic exaggeration.
+</pre>
+
+    <button onclick="copyFallback('prompt1')">Copiar Prompt</button>
+    <div class="hint">Se o botão não funcionar, selecione o texto e copie manualmente.</div>
+  </div>
+
+</div>
+
+<footer>
+  © Prompts by Tezza — Conteúdo protegido. Não redistribuir.
+</footer>
+
+<script>
+  function copyFallback(id) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    alert('Prompt copiado!');
+  }
+</script>
+
+</body>
+</html>
