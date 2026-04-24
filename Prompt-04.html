@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompts by Tezza</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .prompt-box {
+      background: #151515;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    .prompt-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #0d0d0d;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      user-select: text;
+    }
+    button {
+      margin-top: 12px;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #e0e0e0;
+    }
+    .hint {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Prompts by Tezza</h1>
+  <p>Página oficial para copiar prompts • Uso pessoal</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+    <div class="prompt-title">TEZZA PROMPTS
+    COLABORADOR IZACK JIMENEZ </div>
+
+<pre id="prompt1">(TEZZA PROMPTS)
+marque @tezza.vu @jimenez.vu
+site: /dreamina.capcut.com/
+
+  Ultra-realistic cinematic male portrait — Blender Cycles render
+
+CAMERA & COMPOSITION
+Vertical medium close-up portrait framed from mid-torso to head. Camera positioned at eye level with a slight forward proximity, creating a natural and intimate perspective. Subject centered at a restaurant table with foreground plate subtly visible. Shallow depth of field maintaining sharp focus on the subject while softly blurring the background.
+
+POSE & BODY POSITIONING
+Seated relaxed pose with torso slightly angled. One arm resting casually on the chair back while the other remains near the table. Shoulders relaxed, posture confident yet effortless, conveying a natural dining moment.
+
+HEAD POSITION & GAZE
+Head slightly tilted to the side with a subtle forward inclination. Eyes directed straight into the camera, creating a calm and engaging connection. Neck naturally aligned enhancing relaxed elegance.
+
+FACIAL EXPRESSION
+Soft confident expression with relaxed facial muscles. Lips gently closed with a slight hint of a smile. Expression calm, approachable, and subtly charming.
+
+FACE & IDENTITY
+Young man with symmetrical masculine facial structure. Defined jawline with light mustache and subtle stubble. Straight nose bridge and almond-shaped dark eyes. Thick, well-shaped eyebrows. Skin smooth with natural tonal variation and realistic complexion detail.
+
+HAIR
+Dark brown hair mostly covered by a black cap. Visible edges show short, well-groomed hair with natural density. Hairline clean and well-defined.
+
+ACCESSORIES & DETAILS
+Black cap with “Baw®” logo. Thin chain necklace with small pendant. Minimal accessories maintaining a clean aesthetic. Plate with pizza slice visible in foreground adding lifestyle context.
+
+OUTFIT
+White oversized t-shirt with “DAKE” text printed on chest. Fabric appears soft with natural folds and slight drape. Casual modern streetwear aesthetic.
+
+BODY & PHYSIQUE
+Athletic masculine physique with defined shoulders and upper torso structure. Natural proportions preserved without exaggeration.
+
+SKIN & REALISM
+Ultra-detailed skin rendering with visible pores, subtle highlights, and natural color variation. Slight warm tones influenced by indoor ambient lighting. Realistic subsurface scattering typical of Blender Cycles rendering.
+
+LIGHTING
+Warm indoor ambient lighting from overhead fixtures combined with soft frontal illumination. Balanced light creating gentle shadows and enhancing facial depth without harsh contrast.
+
+ENVIRONMENT
+Cozy restaurant setting with wooden furniture, warm hanging lights, and decorative elements in the background. Indoor environment with soft depth of field blur maintaining focus on the subject.
+
+MOOD & AESTHETIC
+Casual lifestyle aesthetic — warm, relaxed, and social. Editorial feel capturing a natural dining moment with subtle sophistication.
+
+STYLE & RENDER QUALITY
+Ultra-photorealistic Blender Cycles render, cinematic realism, 8K resolution, HDR, razor-sharp focus, realistic skin micro-detail, physically accurate lighting, lifestyle editorial quality, no stylization or artistic exaggeration.
+</pre>
+
+    <button onclick="copyFallback('prompt1')">Copiar Prompt</button>
+    <div class="hint">Se o botão não funcionar, selecione o texto e copie manualmente.</div>
+  </div>
+
+</div>
+
+<footer>
+  © Prompts by Tezza — Conteúdo protegido. Não redistribuir.
+</footer>
+
+<script>
+  function copyFallback(id) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    alert('Prompt copiado!');
+  }
+</script>
+
+</body>
+</html>
