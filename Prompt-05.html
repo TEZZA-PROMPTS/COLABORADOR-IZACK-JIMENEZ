@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompts by Tezza</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .prompt-box {
+      background: #151515;
+      border: 1px solid #262626;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    .prompt-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #0d0d0d;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      user-select: text;
+    }
+    button {
+      margin-top: 12px;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #e0e0e0;
+    }
+    .hint {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Prompts by Tezza</h1>
+  <p>Página oficial para copiar prompts • Uso pessoal</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+    <div class="prompt-title">TEZZA PROMPTS
+    COLABORADOR IZACK JIMENEZ </div>
+
+<pre id="prompt1">(TEZZA PROMPTS)
+marque @tezza.vu @jimenez.vu
+site: /dreamina.capcut.com/
+
+  Ultra-realistic cinematic male portrait — Blender Cycles render
+
+CAMERA & COMPOSITION
+Vertical medium close-up portrait framed from mid-thigh to head. Camera positioned slightly below chest level creating a subtle low-angle perspective that enhances body proportions naturally. Subject centered inside a car interior with strong depth visible through the window. Shallow depth of field maintaining sharp focus on the subject while softly blurring the background.
+
+POSE & BODY POSITIONING
+Seated driving position with torso slightly turned toward the camera. Both hands holding a smartphone at mid-torso level, creating a natural candid interaction. Arms slightly flexed, emphasizing forearm and bicep definition. Shoulders relaxed, posture confident and grounded.
+
+HEAD POSITION & GAZE
+Head slightly tilted forward and subtly angled toward the camera. Eyes directed straight into the lens, creating a strong and confident connection. Neck naturally aligned, enhancing masculine structure.
+
+FACIAL EXPRESSION
+Neutral intense expression with relaxed facial muscles. Lips softly closed with slight firmness. Expression composed, confident, and subtly dominant.
+
+FACE & IDENTITY
+Young man with symmetrical masculine facial structure. Strong defined jawline with trimmed beard and mustache. Straight nose bridge and almond-shaped dark eyes. Thick, well-defined eyebrows. Skin smooth with natural tonal variation and realistic complexion detail.
+
+HAIR
+Short dark brown hair styled upward with spiky texture and controlled volume. Sides tapered with a clean fade. Hairline sharp and well-defined, preserving identity consistency.
+
+ACCESSORIES & DETAILS
+Silver wristwatch with metallic bracelet and detailed dial. Small stud earring. Visible neck tattoo with bold geometric design. Smartphone held naturally in both hands. Minimal additional accessories maintaining a clean, modern aesthetic.
+
+OUTFIT
+White fitted graphic t-shirt with “ST. CROIX” text and tropical illustration. Fabric stretched slightly across chest emphasizing physique. Beige designer-style patterned shorts with visible monogram print and drawstrings. Casual luxury streetwear styling.
+
+BODY & PHYSIQUE
+Athletic masculine physique with pronounced arm, shoulder, and chest definition. Visible muscle tone with natural proportions. Body appears strong, balanced, and well-conditioned without exaggeration.
+
+SKIN & REALISM
+Ultra-detailed skin rendering with visible pores, subtle highlights, and natural tonal variation. Skin shows slight sheen under daylight, enhancing realism. Physically accurate subsurface scattering typical of Blender Cycles rendering.
+
+LIGHTING
+Natural daylight entering from the car window, casting directional light across the face and arms. Soft shadows enhance muscle definition and facial contours. Balanced exposure with realistic contrast and no harsh clipping.
+
+ENVIRONMENT
+Car interior with visible steering wheel, seat, and door panel. Background through the window reveals an outdoor café setting with people and tables softly blurred, adding depth and lifestyle context.
+
+MOOD & AESTHETIC
+Modern luxury lifestyle aesthetic — confident, composed, and slightly intense. Editorial feel capturing a candid moment with strong masculine presence and urban sophistication.
+
+STYLE & RENDER QUALITY
+Ultra-photorealistic Blender Cycles render, cinematic realism, 8K resolution, HDR, razor-sharp focus, realistic skin micro-detail, physically accurate lighting, IMVU / Second Life compatible realism, reference-based identity preservation, no stylization or artistic exaggeration. 
+</pre>
+
+    <button onclick="copyFallback('prompt1')">Copiar Prompt</button>
+    <div class="hint">Se o botão não funcionar, selecione o texto e copie manualmente.</div>
+  </div>
+
+</div>
+
+<footer>
+  © Prompts by Tezza — Conteúdo protegido. Não redistribuir.
+</footer>
+
+<script>
+  function copyFallback(id) {
+    const el = document.getElementById(id);
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+    alert('Prompt copiado!');
+  }
+</script>
+
+</body>
+</html>
