@@ -4,17 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
-  <!-- TÍTULO LIMPO -->
+  <!-- TÍTULO LIMPO PARA O LINK -->
   <title>IZACK JIMENEZ • TEZZA PROMPTS</title>
 
-  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO (SEM IMAGEM) -->
-  <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
-  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADOR-IZACK-JIMENEZ/GEMINI-01.html">
-  <meta property="og:type" content="website">
-  
-  <!-- Removemos a meta tag 'og:image' e 'twitter:image' para o link não ficar grande -->
-  <meta name="twitter:card" content="summary"> <!-- 'summary' força o formato pequeno -->
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO -->
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADOR-IZACK-JIMENEZ/GEMINI-02.html">
+  <meta name="description" content="TEZZA PROMPTS OFICIAL">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -363,26 +362,21 @@ GEMINI   [MODO PRO]
         confetti = document.createElement("img");
         confetti.id = "dynamic-confetti";
         confetti.className = "confetti-dynamic";
-        confetti.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
+        confetti.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khH3p66YvR0hY53N2z/giphy.gif";
         document.body.appendChild(confetti);
       }
-
-      const toast = document.getElementById("copy-toast");
-      const sound = document.getElementById("crowd-sound");
       
-      sound.currentTime = 0;
-      sound.play().catch(e => console.log("Erro som:", e));
-
-      confetti.style.display = "block";
+      const toast = document.getElementById("copy-toast");
       toast.style.display = "block";
       
+      const sound = document.getElementById("crowd-sound");
+      sound.currentTime = 0;
+      sound.play();
+
       setTimeout(() => {
         toast.style.display = "none";
-        if (confetti) {
-          confetti.style.display = "none";
-          confetti.remove();
-        }
-      }, 3000);
+        if (confetti) confetti.remove();
+      }, 3500);
     }
   </script>
 </body>
