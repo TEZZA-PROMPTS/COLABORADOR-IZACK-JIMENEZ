@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- TÍTULO LIMPO -->
   <title>IZACK JIMENEZ • TEZZA PROMPTS</title>
+
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO (SEM IMAGEM) -->
+  <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADOR-IZACK-JIMENEZ/GEMINI-01.html">
+  <meta property="og:type" content="website">
+  
+  <!-- Removemos a meta tag 'og:image' e 'twitter:image' para o link não ficar grande -->
+  <meta name="twitter:card" content="summary"> <!-- 'summary' força o formato pequeno -->
+  <meta name="twitter:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -228,7 +239,7 @@
       transform: translateY(-3px);
     }
 
-    /* CELEBRAÇÃO */
+    /* ESTILO DO TOAST */
     #copy-toast {
       position: fixed;
       top: 50%;
@@ -249,7 +260,7 @@
       text-align: center;
     }
 
-    #confetti-gif {
+    .confetti-dynamic {
       position: fixed;
       top: 0;
       left: 0;
@@ -258,7 +269,6 @@
       object-fit: cover;
       pointer-events: none;
       z-index: 9999;
-      display: none;
       opacity: 0.85;
     }
 
@@ -321,14 +331,11 @@ GEMINI   [MODO PRO]
     </footer>
   </div>
 
-  <img id="confetti-gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif" alt="Celebration">
   <div id="copy-toast">PROMPT COPIADO COM SUCESSO</div>
 
-  <!-- Link de áudio de goooooooool (AS Monaco Goal Sound) -->
   <audio id="crowd-sound" src="https://www.myinstants.com/media/sounds/as_monaco_goal_song_-7817147000628296257.mp3" preload="auto"></audio>
 
   <script>
-    // Truque técnico: Habilita o áudio no primeiro clique do usuário na página
     document.body.addEventListener('click', function() {
         const sound = document.getElementById("crowd-sound");
         sound.load();
@@ -338,7 +345,7 @@ GEMINI   [MODO PRO]
       const el = document.getElementById(id);
       try {
         await navigator.clipboard.writeText(el.innerText);
-        showCelebration();
+        startCelebration();
       } catch(err) {
         const textArea = document.createElement("textarea");
         textArea.value = el.innerText;
@@ -346,31 +353,35 @@ GEMINI   [MODO PRO]
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        showCelebration();
+        startCelebration();
       }
     }
 
-    function showCelebration() {
+    function startCelebration() {
+      let confetti = document.getElementById("dynamic-confetti");
+      if (!confetti) {
+        confetti = document.createElement("img");
+        confetti.id = "dynamic-confetti";
+        confetti.className = "confetti-dynamic";
+        confetti.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
+        document.body.appendChild(confetti);
+      }
+
       const toast = document.getElementById("copy-toast");
-      const confetti = document.getElementById("confetti-gif");
       const sound = document.getElementById("crowd-sound");
       
       sound.currentTime = 0;
-      const playPromise = sound.play();
+      sound.play().catch(e => console.log("Erro som:", e));
 
-      if (playPromise !== undefined) {
-          playPromise.catch(error => {
-              console.log("Erro ao tocar áudio: ", error);
-          });
-      }
-
-      confetti.src = confetti.src;
-      toast.style.display = "block";
       confetti.style.display = "block";
+      toast.style.display = "block";
       
       setTimeout(() => {
         toast.style.display = "none";
-        confetti.style.display = "none";
+        if (confetti) {
+          confetti.style.display = "none";
+          confetti.remove();
+        }
       }, 3000);
     }
   </script>
