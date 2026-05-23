@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- TÍTULO LIMPO -->
   <title>IZACK JIMENEZ • TEZZA PROMPTS</title>
 
-  <!-- META TAGS PARA O LINK FICAR LIMPO NO INSTAGRAM/GITHUB -->
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO (SEM IMAGEM) -->
   <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
-  <meta property="og:description" content="Colaborador Izack Jimenez - Tezza Prompts Oficial">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADOR-IZACK-JIMENEZ/GEMINI-01.html">
   <meta property="og:type" content="website">
+  
+  <!-- Removemos a meta tag 'og:image' e 'twitter:image' para o link não ficar grande -->
+  <meta name="twitter:card" content="summary"> <!-- 'summary' força o formato pequeno -->
+  <meta name="twitter:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,7 +239,7 @@
       transform: translateY(-3px);
     }
 
-    /* ESTILO DO TOAST E CONFETE (DINÂMICO) */
+    /* ESTILO DO TOAST */
     #copy-toast {
       position: fixed;
       top: 50%;
@@ -308,7 +313,6 @@
     <div class="prompt-card">
       <div class="card-label">IZACK JIMENEZ COLABORADOR</div>
       <div class="prompt-display" id="main-prompt">
-
 GEMINI   [MODO PRO]
         
 Ultra-realistic cinematic avatar 3D male portrait, Blender Cycles render in CGI, inspired by Seedream 5.0 realism and high-end IMVU/The Sims virtual aesthetics. Clearly a fictional digital avatar and not a real photograph. Hyper-detailed virtual influencer design with stylized CGI masculine proportions, luxury editorial aesthetics, advanced cinematic lighting, ultra-polished 3D rendering, and “TEZZA PROMPTS” text at the bottom center in elegant minimalist typography.
@@ -353,9 +357,7 @@ MOOD & AESTHETIC
 Casual fitness lifestyle aesthetic — energetic, friendly, and authentic. Candid gym moment with modern influencer-style presence. Balanced between realism and polished CGI editorial tone.
 
 STYLE & RENDER QUALITY
-Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 masculine beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired avatar repaint aesthetics, high-fidelity masculine CGI rendering, realistic atmospheric depth, polished virtual influencer styling, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI-avatar aesthetics instead of a real photograph.
-         
-      </div>
+Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 masculine beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired avatar repaint aesthetics, high-fidelity masculine CGI rendering, realistic atmospheric depth, polished virtual influencer styling, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI-avatar aesthetics instead of a real photograph.      </div>
       <button class="action-btn" onclick="copyPrompt('main-prompt')">
         COPIAR PROMPT
       </button>
@@ -370,11 +372,9 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
 
   <div id="copy-toast">PROMPT COPIADO COM SUCESSO</div>
 
-  <!-- O ÁUDIO FICA AQUI MAS NÃO TOCA SOZINHO -->
   <audio id="crowd-sound" src="https://www.myinstants.com/media/sounds/as_monaco_goal_song_-7817147000628296257.mp3" preload="auto"></audio>
 
   <script>
-    // Habilita o áudio no primeiro clique
     document.body.addEventListener('click', function() {
         const sound = document.getElementById("crowd-sound");
         sound.load();
@@ -397,8 +397,6 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
     }
 
     function startCelebration() {
-      // 1. Criar o elemento do confete apenas agora!
-      // Isso impede que ele apareça na prévia do link (Instagram/GitHub)
       let confetti = document.getElementById("dynamic-confetti");
       if (!confetti) {
         confetti = document.createElement("img");
@@ -411,20 +409,17 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
       const toast = document.getElementById("copy-toast");
       const sound = document.getElementById("crowd-sound");
       
-      // Tocar som
       sound.currentTime = 0;
       sound.play().catch(e => console.log("Erro som:", e));
 
-      // Mostrar efeitos
       confetti.style.display = "block";
       toast.style.display = "block";
       
-      // Sumir depois de 3 segundos e REMOVER o confete do código
       setTimeout(() => {
         toast.style.display = "none";
         if (confetti) {
           confetti.style.display = "none";
-          confetti.remove(); // Remove totalmente do site após usar
+          confetti.remove();
         }
       }, 3000);
     }
