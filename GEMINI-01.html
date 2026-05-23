@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IZACK JIMENEZ • TEZZA PROMPTS</title>
 
+  <!-- META TAGS PARA O LINK FICAR LIMPO NO INSTAGRAM/GITHUB -->
+  <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:description" content="Colaborador Izack Jimenez - Tezza Prompts Oficial">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;600;800&family=Krona+One&display=swap" rel="stylesheet">
@@ -228,7 +234,7 @@
       transform: translateY(-3px);
     }
 
-    /* CELEBRAÇÃO */
+    /* ESTILO DO TOAST E CONFETE (DINÂMICO) */
     #copy-toast {
       position: fixed;
       top: 50%;
@@ -249,7 +255,7 @@
       text-align: center;
     }
 
-    #confetti-gif {
+    .confetti-dynamic {
       position: fixed;
       top: 0;
       left: 0;
@@ -258,7 +264,6 @@
       object-fit: cover;
       pointer-events: none;
       z-index: 9999;
-      display: none;
       opacity: 0.85;
     }
 
@@ -349,7 +354,7 @@ Casual fitness lifestyle aesthetic — energetic, friendly, and authentic. Candi
 
 STYLE & RENDER QUALITY
 Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 masculine beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired avatar repaint aesthetics, high-fidelity masculine CGI rendering, realistic atmospheric depth, polished virtual influencer styling, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI-avatar aesthetics instead of a real photograph.
-        
+         
       </div>
       <button class="action-btn" onclick="copyPrompt('main-prompt')">
         COPIAR PROMPT
@@ -363,14 +368,13 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
     </footer>
   </div>
 
-  <img id="confetti-gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif" alt="Celebration">
   <div id="copy-toast">PROMPT COPIADO COM SUCESSO</div>
 
-  <!-- Link de áudio de goooooooool (AS Monaco Goal Sound) -->
+  <!-- O ÁUDIO FICA AQUI MAS NÃO TOCA SOZINHO -->
   <audio id="crowd-sound" src="https://www.myinstants.com/media/sounds/as_monaco_goal_song_-7817147000628296257.mp3" preload="auto"></audio>
 
   <script>
-    // Truque técnico: Habilita o áudio no primeiro clique do usuário na página
+    // Habilita o áudio no primeiro clique
     document.body.addEventListener('click', function() {
         const sound = document.getElementById("crowd-sound");
         sound.load();
@@ -380,7 +384,7 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
       const el = document.getElementById(id);
       try {
         await navigator.clipboard.writeText(el.innerText);
-        showCelebration();
+        startCelebration();
       } catch(err) {
         const textArea = document.createElement("textarea");
         textArea.value = el.innerText;
@@ -388,31 +392,40 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        showCelebration();
+        startCelebration();
       }
     }
 
-    function showCelebration() {
-      const toast = document.getElementById("copy-toast");
-      const confetti = document.getElementById("confetti-gif");
-      const sound = document.getElementById("crowd-sound");
-      
-      sound.currentTime = 0;
-      const playPromise = sound.play();
-
-      if (playPromise !== undefined) {
-          playPromise.catch(error => {
-              console.log("Erro ao tocar áudio: ", error);
-          });
+    function startCelebration() {
+      // 1. Criar o elemento do confete apenas agora!
+      // Isso impede que ele apareça na prévia do link (Instagram/GitHub)
+      let confetti = document.getElementById("dynamic-confetti");
+      if (!confetti) {
+        confetti = document.createElement("img");
+        confetti.id = "dynamic-confetti";
+        confetti.className = "confetti-dynamic";
+        confetti.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
+        document.body.appendChild(confetti);
       }
 
-      confetti.src = confetti.src;
-      toast.style.display = "block";
-      confetti.style.display = "block";
+      const toast = document.getElementById("copy-toast");
+      const sound = document.getElementById("crowd-sound");
       
+      // Tocar som
+      sound.currentTime = 0;
+      sound.play().catch(e => console.log("Erro som:", e));
+
+      // Mostrar efeitos
+      confetti.style.display = "block";
+      toast.style.display = "block";
+      
+      // Sumir depois de 3 segundos e REMOVER o confete do código
       setTimeout(() => {
         toast.style.display = "none";
-        confetti.style.display = "none";
+        if (confetti) {
+          confetti.style.display = "none";
+          confetti.remove(); // Remove totalmente do site após usar
+        }
       }, 3000);
     }
   </script>
