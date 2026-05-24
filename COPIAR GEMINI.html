@@ -362,7 +362,8 @@ GEMINI   [MODO PRO]
         confetti = document.createElement("img");
         confetti.id = "dynamic-confetti";
         confetti.className = "confetti-dynamic";
-        confetti.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khH3p66YvR0hY53N2z/giphy.gif";
+        // Atualizado para o novo link de confetes enviado pelo usuário
+        confetti.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo5aTRxdWU0NW42bDBlZmwycnc2a3Zma2N2YjBocWZkbzNreGdpaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
         document.body.appendChild(confetti);
       }
       
@@ -375,7 +376,9 @@ GEMINI   [MODO PRO]
 
       setTimeout(() => {
         toast.style.display = "none";
-        if (confetti) confetti.remove();
+        if (confetti) {
+            confetti.remove();
+        }
       }, 3500);
     }
   </script>
