@@ -357,8 +357,8 @@ MOOD & AESTHETIC
 Casual outdoor lifestyle aesthetic with calm, confident, and natural energy. Clean, candid selfie moment with modern social media presence and realistic atmosphere.
 
 STYLE & RENDER QUALITY
-Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 masculine beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired avatar repaint aesthetics, high-fidelity masculine CGI rendering, realistic atmospheric depth, polished virtual influencer styling, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI-avatar aesthetics instead of a real photograph.
-                
+Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 masculine beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired avatar repaint aesthetics, high-fidelity masculine CGI rendering, realistic atmospheric depth, polished virtual influencer styling, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI-avatar aesthetics instead of a real photograph.        
+        
       </div>
       <button class="action-btn" onclick="copyPrompt('main-prompt')">
         COPIAR PROMPT
@@ -404,7 +404,8 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
         confetti = document.createElement("img");
         confetti.id = "dynamic-confetti";
         confetti.className = "confetti-dynamic";
-        confetti.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW92d3Job3NocTR0a2F4NHkwdThlaXRqaDQ0bDhjeXRmZ2tpNjFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khH3p66YvR0hY53N2z/giphy.gif";
+        // Atualizado para o novo link de confetes enviado pelo usuário
+        confetti.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo5aTRxdWU0NW42bDBlZmwycnc2a3Zma2N2YjBocWZkbzNreGdpaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
         document.body.appendChild(confetti);
       }
       
@@ -417,7 +418,9 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
 
       setTimeout(() => {
         toast.style.display = "none";
-        if (confetti) confetti.remove();
+        if (confetti) {
+            confetti.remove();
+        }
       }, 3500);
     }
   </script>
