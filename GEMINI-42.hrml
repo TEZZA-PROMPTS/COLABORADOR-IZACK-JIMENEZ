@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- TÍTULO LIMPO PARA O LINK -->
+  <title>IZACK JIMENEZ • TEZZA PROMPTS</title>
+
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADOR-IZACK-JIMENEZ/GEMINI-02.html">
+  <meta name="description" content="TEZZA PROMPTS OFICIAL">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;600;800&family=Krona+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --psg-blue: #004170;
+      --psg-midnight: #051024;
+      --psg-red: #da1721;
+      --psg-white: #ffffff;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: 'Poppins', sans-serif;
+      background: var(--psg-midnight);
+      min-height: 100vh;
+      color: #ffffff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* CAMPO DE FUTEBOL SUTIL */
+    .stadium-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 65, 112, 0.3) 0%, transparent 80%),
+        linear-gradient(rgba(5, 16, 36, 0.9), rgba(5, 16, 36, 0.9)),
+        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .pitch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.08;
+    }
+
+    .pitch-overlay::before {
+      content: '';
+      position: absolute;
+      top: 10%; bottom: 10%; left: 5%; right: 5%;
+      border: 2px solid #fff;
+    }
+
+    .pitch-center-circle {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px; height: 200px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+    }
+
+    /* BARRA DE MOVIMENTO PSG */
+    .motion-bar {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(90deg, var(--psg-blue) 0%, var(--psg-red) 50%, var(--psg-blue) 100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      transform: skewY(-2deg);
+      transform-origin: top left;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .ticker {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 25s linear infinite;
+    }
+
+    .ticker span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0 50px;
+      letter-spacing: 5px;
+      color: var(--psg-white);
+    }
+
+    @keyframes ticker {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .main-content {
+      margin-top: 120px;
+      width: 95%;
+      max-width: 1100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .player-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 6.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -2px;
+      font-style: italic;
+      background: linear-gradient(to bottom, #ffffff 50%, #bbbbbb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(5px 5px 0px var(--psg-blue));
+      padding: 0 20px;
+      display: inline-block;
+    }
+
+    .sub-headline {
+      font-family: 'Krona One', sans-serif;
+      font-size: 1.1rem;
+      color: var(--psg-red);
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      margin-top: 15px;
+      background: rgba(255,255,255,0.03);
+      padding: 8px 25px;
+      display: inline-block;
+      transform: skewX(-15deg);
+      border-left: 4px solid var(--psg-blue);
+    }
+
+    /* CARD PLACAR LED PSG */
+    .prompt-card {
+      background: rgba(5, 16, 36, 0.95);
+      border: 1px solid var(--psg-blue);
+      position: relative;
+      padding: 50px 40px;
+      margin-top: 50px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      clip-path: polygon(3% 0, 100% 0, 97% 100%, 0% 100%);
+      animation: ledPulse 3s infinite alternate;
+    }
+
+    @keyframes ledPulse {
+      0% { border-color: var(--psg-blue); box-shadow: 0 0 15px rgba(0, 65, 112, 0.3); }
+      100% { border-color: var(--psg-red); box-shadow: 0 0 30px rgba(218, 23, 33, 0.5); }
+    }
+
+    .card-label {
+      position: absolute;
+      top: 0;
+      left: 8%;
+      background: var(--psg-red);
+      color: #fff;
+      padding: 6px 25px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      border-bottom: 3px solid var(--psg-blue);
+    }
+
+    .prompt-display {
+      background: #000;
+      border-left: 3px solid var(--psg-red);
+      padding: 30px;
+      margin: 25px 0;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #eee;
+      white-space: pre-wrap;
+    }
+
+    .action-btn {
+      width: 100%;
+      background: var(--psg-white);
+      color: var(--psg-midnight);
+      border: none;
+      padding: 22px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .action-btn:hover {
+      background: var(--psg-red);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* ESTILO DO TOAST */
+    #copy-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--psg-blue);
+      color: #fff;
+      padding: 40px 80px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-style: italic;
+      display: none;
+      z-index: 10000;
+      box-shadow: 0 0 150px rgba(0, 65, 112, 0.8);
+      border: 6px solid var(--psg-red);
+      text-align: center;
+    }
+
+    .confetti-dynamic {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.85;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 50px;
+      text-align: center;
+      border-top: 1px solid var(--psg-blue);
+      width: 100%;
+      font-family: 'Oswald', sans-serif;
+      color: #555;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .player-title { font-size: 3.8rem; }
+      .prompt-card { clip-path: none; padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stadium-bg"></div>
+  <div class="pitch-overlay">
+    <div class="pitch-center-circle"></div>
+  </div>
+
+  <div class="motion-bar">
+    <div class="ticker">
+      <span>• IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • </span>
+      <span>• IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • </span>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1 class="player-title">IZACK JIMENEZ</h1>
+      <div class="sub-headline">TEZZA PROMPTS OFICIAL</div>
+    </header>
+
+    <div class="prompt-card">
+      <div class="card-label">IZACK JIMENEZ COLABORADOR</div>
+      <div class="prompt-display" id="main-prompt">
+
+GEMINI   [MODO PRO]
+        
+Ultra-realistic cinematic avatar 3D couple portrait, Blender Cycles render in CGI, inspired by Seedream 5.0 beauty realism and high-end IMVU/The Sims virtual aesthetics. Clearly fictional digital avatars and not real photographs. Hyper-detailed virtual influencer couple design with stylized CGI beauty proportions, luxury editorial aesthetics, advanced cinematic lighting, ultra-polished 3D rendering, and “TEZZA PROMPTS” text at the bottom center in elegant minimalist typography.
+
+CAMERA & COMPOSITION
+
+Vertical 9:16 aspect ratio luxury mirror selfie shot. Medium close-up framing from the waist to the top of the head. Smartphone held naturally by the female avatar at chest height in front of the mirror, creating a slightly elevated perspective. Female avatar positioned in the foreground while the male avatar stands closely beside and slightly behind her, with one hand resting naturally around her waist. Preserve the original camera angle, framing, composition, perspective, body positioning, and mirror reflection exactly. Sharp focus on both faces, hair, clothing, and accessories with soft cinematic depth of field.
+
+POSE & BODY POSITIONING
+
+Female avatar standing confidently with relaxed posture while holding the smartphone naturally for the mirror selfie. Body slightly angled with elegant shoulders and natural torso alignment. Male avatar positioned closely beside and behind her with relaxed masculine posture, one arm naturally wrapped around her waist while the opposite arm remains relaxed. Preserve the exact pose, hand placement, body proportions, and distance between both avatars.
+
+HEAD POSITION & GAZE
+
+Female avatar keeps her head facing slightly sideways while gazing away from the smartphone with calm editorial elegance. Long hair falls naturally over both shoulders and chest. Male avatar keeps his head slightly tilted downward while looking toward the mirror with softly pursed lips and relaxed confident energy. Preserve the original head angles and gaze directions.
+
+FACIAL EXPRESSION
+
+Female avatar maintains a calm neutral editorial expression with softly relaxed glossy lips and confident influencer beauty. Male avatar displays softly pursed lips with relaxed masculine confidence and subtle luxury-editorial attitude. Preserve the original expressions without reinterpretation.
+
+FEMALE AVATAR
+
+FACE & IDENTITY
+
+Adult female CGI avatar with facial identity preserved exactly, maintaining identical facial proportions, eye shape, eyebrow structure, nose shape, lip volume, jawline, cheekbone definition, facial symmetry, and every recognizable beauty characteristic without modification. Preserve the exact expression and refined feminine identity while enhancing only CGI realism.
+
+HAIR
+
+Long straight ash-blonde hair with darker natural roots, smooth silky texture, center parting, soft fluid movement, realistic strand definition, natural density, subtle layered ends, polished shine, and advanced Blender hair simulation. Preserve the exact hairstyle, length, volume, and proportions.
+
+ACCESSORIES & DETAILS
+
+Maintain layered delicate gold necklaces with small pendants, gold bracelet, elegant rings, glossy white almond-shaped manicure, transparent smartphone case decorated with small white and pink daisy flowers, and every visible accessory exactly as shown. Do not add or remove accessories.
+
+OUTFIT
+
+Maintain the fitted white halter-style corset top exactly as shown, including the structured front closure, clean seams, fitted silhouette, realistic fabric texture, subtle folds, and garment proportions without modification.
+
+BODY & PHYSIQUE
+
+Maintain slim feminine physique with elegant waistline, natural curves, refined anatomy, soft body transitions, realistic proportions, and polished cinematic CGI contour shading while preserving the original body structure.
+
+MALE AVATAR
+
+FACE & IDENTITY
+
+Adult male CGI avatar with facial identity preserved exactly, maintaining identical jawline, eyebrow shape, eye spacing, nose proportions, lips, trimmed mustache, goatee connection, facial symmetry, and recognizable masculine characteristics without alteration. Preserve the original facial expression and masculine identity.
+
+HAIR
+
+Hair fully covered by a fitted black durag tied at the back with natural fabric folds and realistic cloth simulation. Preserve the exact appearance, fit, proportions, and visible hairline without reinterpretation. Maintain the precisely groomed mustache and goatee with realistic strand definition.
+
+ACCESSORIES & DETAILS
+
+Maintain small metallic earrings, layered necklaces, and all visible jewelry exactly as shown. Preserve every reflective metallic detail and accessory placement without additions or removals.
+
+OUTFIT
+
+Maintain the fitted white crew-neck t-shirt layered beneath a grey acid-wash denim jacket with matching textured denim pants. Preserve the washed fabric appearance, stitching, folds, garment proportions, and overall streetwear styling exactly as shown.
+
+BODY & PHYSIQUE
+
+Maintain lean athletic masculine physique with broad shoulders, toned upper body, relaxed confident posture, natural anatomy, and polished IMVU/Sims-inspired CGI body rendering while preserving the original proportions.
+
+SKIN & REALISM
+
+Ultra-detailed Seedream 5.0 skin rendering with realistic pores, subtle hydrated skin sheen, natural skin texture, physically accurate subsurface scattering, refined Blender material realism, and preserved individual skin appearance for both avatars. Maintain clearly fictional CGI avatar aesthetics without excessive smoothing or photoreal human rendering.
+
+LIGHTING
+
+Soft indoor mirror lighting combined with warm ambient illumination, producing balanced highlights across the skin, hair, clothing, jewelry, and smartphone. Preserve the original lighting direction, soft reflections, realistic shadows, and cinematic interior atmosphere.
+
+ENVIRONMENT
+
+Modern minimalist bathroom interior with glossy light-colored tiled walls, clean mirror surfaces, subtle indoor reflections, and softly blurred background. Preserve the original environment, perspective, composition, and reflective mirror aesthetics exactly.
+
+MOOD & AESTHETIC
+
+Luxury influencer couple aesthetic blended with premium social-media editorial photography, polished lifestyle fashion, sophisticated intimacy, modern elegance, cinematic CGI beauty, stylish urban atmosphere, and high-end virtual avatar realism while preserving the exact visual identity of the original composition.
+
+STYLE & RENDER QUALITY
+
+Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired beauty repaint style, high-fidelity couple avatar rendering, realistic depth of field, glossy beauty aesthetic, polished virtual influencer atmosphere, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI avatar aesthetics instead of real photographs.
+        
+        
+      </div>
+      <button class="action-btn" onclick="copyPrompt('main-prompt')">
+        COPIAR PROMPT
+      </button>
+    </div>
+
+    <footer>
+      <strong>MARQUE @jimenez.vu</strong>
+      <br><br>
+      IZACK JIMENEZ • TEZZA PROMPTS — Conteúdo protegido.
+    </footer>
+  </div>
+
+  <div id="copy-toast">PROMPT COPIADO COM SUCESSO</div>
+
+  <audio id="crowd-sound" src="https://www.myinstants.com/media/sounds/as_monaco_goal_song_-7817147000628296257.mp3" preload="auto"></audio>
+
+  <script>
+    document.body.addEventListener('click', function() {
+        const sound = document.getElementById("crowd-sound");
+        sound.load();
+    }, { once: true });
+
+    async function copyPrompt(id) {
+      const el = document.getElementById(id);
+      try {
+        await navigator.clipboard.writeText(el.innerText);
+        startCelebration();
+      } catch(err) {
+        const textArea = document.createElement("textarea");
+        textArea.value = el.innerText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        startCelebration();
+      }
+    }
+
+    function startCelebration() {
+      let confetti = document.getElementById("dynamic-confetti");
+      if (!confetti) {
+        confetti = document.createElement("img");
+        confetti.id = "dynamic-confetti";
+        confetti.className = "confetti-dynamic";
+        // Atualizado para o novo link de confetes enviado pelo usuário
+        confetti.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo5aTRxdWU0NW42bDBlZmwycnc2a3Zma2N2YjBocWZkbzNreGdpaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
+        document.body.appendChild(confetti);
+      }
+      
+      const toast = document.getElementById("copy-toast");
+      toast.style.display = "block";
+      
+      const sound = document.getElementById("crowd-sound");
+      sound.currentTime = 0;
+      sound.play();
+
+      setTimeout(() => {
+        toast.style.display = "none";
+        if (confetti) {
+            confetti.remove();
+        }
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
