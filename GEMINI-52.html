@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- TÍTULO LIMPO PARA O LINK -->
+  <title>IZACK JIMENEZ • TEZZA PROMPTS</title>
+
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADOR-IZACK-JIMENEZ/GEMINI-02.html">
+  <meta name="description" content="TEZZA PROMPTS OFICIAL">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;600;800&family=Krona+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --psg-blue: #004170;
+      --psg-midnight: #051024;
+      --psg-red: #da1721;
+      --psg-white: #ffffff;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: 'Poppins', sans-serif;
+      background: var(--psg-midnight);
+      min-height: 100vh;
+      color: #ffffff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* CAMPO DE FUTEBOL SUTIL */
+    .stadium-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 65, 112, 0.3) 0%, transparent 80%),
+        linear-gradient(rgba(5, 16, 36, 0.9), rgba(5, 16, 36, 0.9)),
+        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .pitch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.08;
+    }
+
+    .pitch-overlay::before {
+      content: '';
+      position: absolute;
+      top: 10%; bottom: 10%; left: 5%; right: 5%;
+      border: 2px solid #fff;
+    }
+
+    .pitch-center-circle {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px; height: 200px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+    }
+
+    /* BARRA DE MOVIMENTO PSG */
+    .motion-bar {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(90deg, var(--psg-blue) 0%, var(--psg-red) 50%, var(--psg-blue) 100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      transform: skewY(-2deg);
+      transform-origin: top left;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .ticker {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 25s linear infinite;
+    }
+
+    .ticker span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0 50px;
+      letter-spacing: 5px;
+      color: var(--psg-white);
+    }
+
+    @keyframes ticker {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .main-content {
+      margin-top: 120px;
+      width: 95%;
+      max-width: 1100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .player-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 6.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -2px;
+      font-style: italic;
+      background: linear-gradient(to bottom, #ffffff 50%, #bbbbbb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(5px 5px 0px var(--psg-blue));
+      padding: 0 20px;
+      display: inline-block;
+    }
+
+    .sub-headline {
+      font-family: 'Krona One', sans-serif;
+      font-size: 1.1rem;
+      color: var(--psg-red);
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      margin-top: 15px;
+      background: rgba(255,255,255,0.03);
+      padding: 8px 25px;
+      display: inline-block;
+      transform: skewX(-15deg);
+      border-left: 4px solid var(--psg-blue);
+    }
+
+    /* CARD PLACAR LED PSG */
+    .prompt-card {
+      background: rgba(5, 16, 36, 0.95);
+      border: 1px solid var(--psg-blue);
+      position: relative;
+      padding: 50px 40px;
+      margin-top: 50px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      clip-path: polygon(3% 0, 100% 0, 97% 100%, 0% 100%);
+      animation: ledPulse 3s infinite alternate;
+    }
+
+    @keyframes ledPulse {
+      0% { border-color: var(--psg-blue); box-shadow: 0 0 15px rgba(0, 65, 112, 0.3); }
+      100% { border-color: var(--psg-red); box-shadow: 0 0 30px rgba(218, 23, 33, 0.5); }
+    }
+
+    .card-label {
+      position: absolute;
+      top: 0;
+      left: 8%;
+      background: var(--psg-red);
+      color: #fff;
+      padding: 6px 25px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      border-bottom: 3px solid var(--psg-blue);
+    }
+
+    .prompt-display {
+      background: #000;
+      border-left: 3px solid var(--psg-red);
+      padding: 30px;
+      margin: 25px 0;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #eee;
+      white-space: pre-wrap;
+    }
+
+    .action-btn {
+      width: 100%;
+      background: var(--psg-white);
+      color: var(--psg-midnight);
+      border: none;
+      padding: 22px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .action-btn:hover {
+      background: var(--psg-red);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* ESTILO DO TOAST */
+    #copy-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--psg-blue);
+      color: #fff;
+      padding: 40px 80px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-style: italic;
+      display: none;
+      z-index: 10000;
+      box-shadow: 0 0 150px rgba(0, 65, 112, 0.8);
+      border: 6px solid var(--psg-red);
+      text-align: center;
+    }
+
+    .confetti-dynamic {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.85;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 50px;
+      text-align: center;
+      border-top: 1px solid var(--psg-blue);
+      width: 100%;
+      font-family: 'Oswald', sans-serif;
+      color: #555;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .player-title { font-size: 3.8rem; }
+      .prompt-card { clip-path: none; padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stadium-bg"></div>
+  <div class="pitch-overlay">
+    <div class="pitch-center-circle"></div>
+  </div>
+
+  <div class="motion-bar">
+    <div class="ticker">
+      <span>• IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • </span>
+      <span>• IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • </span>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1 class="player-title">IZACK JIMENEZ</h1>
+      <div class="sub-headline">TEZZA PROMPTS OFICIAL</div>
+    </header>
+
+    <div class="prompt-card">
+      <div class="card-label">IZACK JIMENEZ COLABORADOR</div>
+      <div class="prompt-display" id="main-prompt">
+
+GEMINI   [MODO PRO]
+        
+Ultra-realistic cinematic avatar 3D male portrait, Blender Cycles render in CGI, inspired by Seedream 5.0 realism and high-end IMVU/The Sims virtual aesthetics. Clearly a fictional digital avatar and not a real photograph. Hyper-detailed virtual influencer design with stylized CGI masculine proportions, luxury editorial aesthetics, advanced cinematic lighting, ultra-polished 3D rendering, and “TEZZA PROMPTS” text at the bottom center in elegant minimalist typography.
+
+PRIORIDADE RIGOROSA
+
+Use the visual base as the absolute source for all visual descriptions. Preserve the exact facial structure, hairstyle, facial expression, pose, body positioning, hand placement, camera angle, framing, composition, perspective, lighting, clothing, accessories, proportions, skin tone, and overall visual identity. Do not invent, replace, beautify, exaggerate, or reinterpret elements. Cinematic CGI realism must only enhance the original visual characteristics while maintaining maximum visual fidelity and identity consistency. Maintain the male avatar's black hair and preserve all defining visual identity traits. Do not include any tattoo descriptions.
+
+CAMERA & COMPOSITION
+
+Vertical 9:16 aspect ratio luxury lifestyle portrait photographed outdoors in a modern residential environment. Medium-to-full body composition framing the male avatar from the top of the head to below the knees, keeping the face, muscular torso, arms, cardigan, shorts, and overall silhouette clearly visible. Camera positioned approximately at chest-to-eye level with a subtle low-angle perspective that enhances masculine presence without exaggerating anatomy. Subject remains centered within the frame with a slight natural lateral offset. The architectural background provides clean geometric depth while remaining softly defocused. Maintain realistic photographic proportions, natural lens perspective, cinematic depth of field, and balanced negative space around the subject.
+
+POSE & BODY POSITIONING
+
+Subject standing casually outdoors with a relaxed masculine posture and torso slightly angled toward the camera. One arm hangs naturally downward along the side of the body while the opposite arm is bent upward, with the hand gripping the upper edge of the oversized cardigan near the shoulder. The cardigan hangs loosely from both arms, partially covering the forearms and sides of the torso. Shoulders remain relaxed while the chest naturally projects forward. Abdomen remains visible and naturally elongated through the open front of the cardigan. Hips remain relaxed with a slight natural weight shift toward one leg. Hands maintain realistic finger positioning, relaxed tension, and anatomically accurate proportions. The pose should feel spontaneous, confident, stylish, and naturally masculine.
+
+HEAD POSITION & GAZE
+
+Head positioned slightly tilted toward one side with a subtle downward angle. Chin remains naturally lowered while the face turns directly toward the camera. Eyes maintain direct engagement with the lens, creating a confident and approachable visual connection. Gaze appears relaxed and naturally focused rather than exaggerated. Preserve the exact head angle, neck position, facial orientation, and gaze direction.
+
+FACIAL EXPRESSION
+
+Relaxed confident masculine expression with a natural subtle smile showing a small amount of teeth. Facial muscles remain soft and authentic, creating approachable confidence and effortless charm. Expression conveys warmth, self-assurance, sophistication, and casual masculine energy without exaggerated emotion. Preserve the natural expression and exact emotional character.
+
+FACE & IDENTITY
+
+Adult male CGI avatar with strong masculine facial architecture, defined jawline, sculpted cheekbones, proportionate forehead, expressive eyes, thick naturally groomed eyebrows, proportionate nose, naturally shaped lips, and neatly maintained short facial hair. Preserve the exact facial geometry, jaw structure, cheek proportions, eye shape and spacing, eyebrow structure, nose proportions, lip shape, facial-hair configuration, skin tone, and established visual identity. Do not redesign, beautify, age, soften, or reinterpret the facial structure. Maintain maximum identity fidelity while presenting the subject as a clearly fictional high-end CGI avatar.
+
+HAIR
+
+Short black textured hair with a modern masculine haircut, naturally fuller across the top and shorter along the sides. Hair contains dense individual strands with subtle directional separation, natural volume, slightly tousled styling, and realistic dimensional texture. Preserve the black color, haircut, hairline, density, length, texture, and overall styling exactly. Do not introduce brown, blonde, gray, or other color variations. Advanced CGI hair rendering provides realistic strand definition, subtle highlights, and natural shadow separation.
+
+ACCESSORIES & DETAILS
+
+Delicate metallic chain necklace positioned naturally around the neck and upper chest with realistic reflective properties. Minimal metallic ear accessory with subtle highlights. Preserve the original accessory placement, proportions, material appearance, and visual prominence. The cardigan features a thick knitted construction with large horizontal black-and-cream stripes, ribbed cuffs, textured yarn, and oversized relaxed proportions. Preserve realistic fabric fibers, stitching, knit structure, folds, and natural draping. Hands receive high-fidelity anatomical detailing with realistic fingers, nails, knuckles, skin folds, and natural grip pressure.
+
+OUTFIT
+
+Shirtless masculine styling with the upper torso exposed while wearing an oversized open-front knitted cardigan draped naturally over the arms and shoulders. Cardigan features a cream/off-white base with broad horizontal black stripes, thick knitted texture, ribbed cuffs, relaxed oversized fit, and heavy natural draping. Lower body is dressed in light cream textured lounge shorts with an elastic waistband, visible drawstring, subtle waffle-knit textile structure, relaxed fit, and natural fabric folds. Preserve the exact garment colors, proportions, fit, textile texture, waistband placement, drawstring configuration, cardigan stripe pattern, sleeve length, and overall styling.
+
+BODY & PHYSIQUE
+
+Highly athletic masculine physique with broad shoulders, large muscular arms, defined pectoral structure, prominent collarbones, sculpted abdominal muscles, narrow waist, developed obliques, and strong proportional legs. Musculature remains anatomically realistic with smooth transitions between muscle groups and natural body volume. Preserve the established masculine silhouette, shoulder-to-waist ratio, torso proportions, arm dimensions, abdominal definition, and overall physique without excessive exaggeration. The body should appear strong, fit, polished, and naturally proportioned.
+
+SKIN & REALISM
+
+Ultra-detailed Seedream 5.0-inspired CGI skin rendering with realistic pores, fine micro-texture, subtle tonal variations, natural imperfections, physically accurate subsurface scattering, and realistic skin reflectance. Preserve the established warm medium skin tone without modification. Subtle natural highlights appear across the forehead, cheekbones, shoulders, chest, arms, abdomen, and hands. Maintain realistic skin softness combined with visible anatomical definition. Avoid excessive smoothing, plastic surfaces, waxy appearance, artificial gloss, or unrealistic skin coloration.
+
+LIGHTING
+
+Warm natural daylight with cinematic soft directional illumination coming from the front and slightly from the side. Sunlight creates controlled highlights across the face, shoulders, chest, arms, abdomen, necklace, cardigan fibers, and exposed legs while maintaining soft architectural shadows. Warm daylight emphasizes skin depth and muscular contours without harsh overexposure. Physically accurate Blender Cycles lighting creates realistic material reflections, natural shadow gradients, subtle ambient occlusion, and premium editorial depth.
+
+ENVIRONMENT
+
+Modern upscale residential exterior with contemporary architectural elements, neutral textured walls, large dark-framed openings, and a distinctive dark metal spiral staircase visible in the background. Minimal landscaping and subtle greenery appear around the edges of the scene. Neutral beige, cream, black, and warm architectural tones create a sophisticated luxury setting. Background remains softly defocused while retaining recognizable architectural depth and clean geometric lines. Preserve the original environment's spatial organization, architectural character, lighting conditions, and overall visual atmosphere without introducing unrelated elements.
+
+MOOD & AESTHETIC
+
+Luxury masculine lifestyle aesthetic combining modern residential architecture, sophisticated casual fashion, athletic editorial photography, and premium fictional-avatar realism. Calm, confident, warm, stylish, effortlessly masculine, polished, and naturally photogenic. The oversized knitted cardigan contrasts with the athletic physique, creating a refined high-end fashion-lifestyle atmosphere. The overall image should feel like a candid luxury editorial portrait captured in natural daylight.
+
+STYLE & RENDER QUALITY
+
+Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 masculine beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired avatar repaint aesthetics, high-fidelity masculine CGI rendering, realistic atmospheric depth, polished virtual influencer styling, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI-avatar aesthetics instead of a real photograph.
+        
+        
+      </div>
+      <button class="action-btn" onclick="copyPrompt('main-prompt')">
+        COPIAR PROMPT
+      </button>
+    </div>
+
+    <footer>
+      <strong>MARQUE @jimenez.vu</strong>
+      <br><br>
+      IZACK JIMENEZ • TEZZA PROMPTS — Conteúdo protegido.
+    </footer>
+  </div>
+
+  <div id="copy-toast">PROMPT COPIADO COM SUCESSO</div>
+
+  <audio id="crowd-sound" src="https://www.myinstants.com/media/sounds/as_monaco_goal_song_-7817147000628296257.mp3" preload="auto"></audio>
+
+  <script>
+    document.body.addEventListener('click', function() {
+        const sound = document.getElementById("crowd-sound");
+        sound.load();
+    }, { once: true });
+
+    async function copyPrompt(id) {
+      const el = document.getElementById(id);
+      try {
+        await navigator.clipboard.writeText(el.innerText);
+        startCelebration();
+      } catch(err) {
+        const textArea = document.createElement("textarea");
+        textArea.value = el.innerText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        startCelebration();
+      }
+    }
+
+    function startCelebration() {
+      let confetti = document.getElementById("dynamic-confetti");
+      if (!confetti) {
+        confetti = document.createElement("img");
+        confetti.id = "dynamic-confetti";
+        confetti.className = "confetti-dynamic";
+        // Atualizado para o novo link de confetes enviado pelo usuário
+        confetti.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo5aTRxdWU0NW42bDBlZmwycnc2a3Zma2N2YjBocWZkbzNreGdpaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
+        document.body.appendChild(confetti);
+      }
+      
+      const toast = document.getElementById("copy-toast");
+      toast.style.display = "block";
+      
+      const sound = document.getElementById("crowd-sound");
+      sound.currentTime = 0;
+      sound.play();
+
+      setTimeout(() => {
+        toast.style.display = "none";
+        if (confetti) {
+            confetti.remove();
+        }
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
