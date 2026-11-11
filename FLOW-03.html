@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- TÍTULO LIMPO PARA O LINK -->
+  <title>IZACK JIMENEZ • TEZZA PROMPTS</title>
+
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:title" content="IZACK JIMENEZ • TEZZA PROMPTS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADOR-IZACK-JIMENEZ/GEMINI-02.html">
+  <meta name="description" content="TEZZA PROMPTS OFICIAL">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;600;800&family=Krona+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --psg-blue: #004170;
+      --psg-midnight: #051024;
+      --psg-red: #da1721;
+      --psg-white: #ffffff;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: 'Poppins', sans-serif;
+      background: var(--psg-midnight);
+      min-height: 100vh;
+      color: #ffffff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* CAMPO DE FUTEBOL SUTIL */
+    .stadium-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 65, 112, 0.3) 0%, transparent 80%),
+        linear-gradient(rgba(5, 16, 36, 0.9), rgba(5, 16, 36, 0.9)),
+        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .pitch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.08;
+    }
+
+    .pitch-overlay::before {
+      content: '';
+      position: absolute;
+      top: 10%; bottom: 10%; left: 5%; right: 5%;
+      border: 2px solid #fff;
+    }
+
+    .pitch-center-circle {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px; height: 200px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+    }
+
+    /* BARRA DE MOVIMENTO PSG */
+    .motion-bar {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(90deg, var(--psg-blue) 0%, var(--psg-red) 50%, var(--psg-blue) 100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      transform: skewY(-2deg);
+      transform-origin: top left;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .ticker {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 25s linear infinite;
+    }
+
+    .ticker span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0 50px;
+      letter-spacing: 5px;
+      color: var(--psg-white);
+    }
+
+    @keyframes ticker {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .main-content {
+      margin-top: 120px;
+      width: 95%;
+      max-width: 1100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .player-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 6.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -2px;
+      font-style: italic;
+      background: linear-gradient(to bottom, #ffffff 50%, #bbbbbb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(5px 5px 0px var(--psg-blue));
+      padding: 0 20px;
+      display: inline-block;
+    }
+
+    .sub-headline {
+      font-family: 'Krona One', sans-serif;
+      font-size: 1.1rem;
+      color: var(--psg-red);
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      margin-top: 15px;
+      background: rgba(255,255,255,0.03);
+      padding: 8px 25px;
+      display: inline-block;
+      transform: skewX(-15deg);
+      border-left: 4px solid var(--psg-blue);
+    }
+
+    /* CARD PLACAR LED PSG */
+    .prompt-card {
+      background: rgba(5, 16, 36, 0.95);
+      border: 1px solid var(--psg-blue);
+      position: relative;
+      padding: 50px 40px;
+      margin-top: 50px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      clip-path: polygon(3% 0, 100% 0, 97% 100%, 0% 100%);
+      animation: ledPulse 3s infinite alternate;
+    }
+
+    @keyframes ledPulse {
+      0% { border-color: var(--psg-blue); box-shadow: 0 0 15px rgba(0, 65, 112, 0.3); }
+      100% { border-color: var(--psg-red); box-shadow: 0 0 30px rgba(218, 23, 33, 0.5); }
+    }
+
+    .card-label {
+      position: absolute;
+      top: 0;
+      left: 8%;
+      background: var(--psg-red);
+      color: #fff;
+      padding: 6px 25px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      border-bottom: 3px solid var(--psg-blue);
+    }
+
+    .prompt-display {
+      background: #000;
+      border-left: 3px solid var(--psg-red);
+      padding: 30px;
+      margin: 25px 0;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #eee;
+      white-space: pre-wrap;
+    }
+
+    .action-btn {
+      width: 100%;
+      background: var(--psg-white);
+      color: var(--psg-midnight);
+      border: none;
+      padding: 22px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .action-btn:hover {
+      background: var(--psg-red);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* ESTILO DO TOAST */
+    #copy-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--psg-blue);
+      color: #fff;
+      padding: 40px 80px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-style: italic;
+      display: none;
+      z-index: 10000;
+      box-shadow: 0 0 150px rgba(0, 65, 112, 0.8);
+      border: 6px solid var(--psg-red);
+      text-align: center;
+    }
+
+    .confetti-dynamic {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.85;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 50px;
+      text-align: center;
+      border-top: 1px solid var(--psg-blue);
+      width: 100%;
+      font-family: 'Oswald', sans-serif;
+      color: #555;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .player-title { font-size: 3.8rem; }
+      .prompt-card { clip-path: none; padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stadium-bg"></div>
+  <div class="pitch-overlay">
+    <div class="pitch-center-circle"></div>
+  </div>
+
+  <div class="motion-bar">
+    <div class="ticker">
+      <span>• IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • </span>
+      <span>• IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • IZACK JIMENEZ • TEZZA PROMPTS OFICIAL • </span>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1 class="player-title">IZACK JIMENEZ</h1>
+      <div class="sub-headline">TEZZA PROMPTS OFICIAL</div>
+    </header>
+
+    <div class="prompt-card">
+      <div class="card-label">IZACK JIMENEZ COLABORADOR</div>
+      <div class="prompt-card">
+      <div class="card-label">FLOW</div>  
+      <div class="prompt-display" id="main-prompt">
+
+        
+Ultra-realistic cinematic avatar 3D family portrait, Blender Cycles render in CGI, inspired by Seedream 5.0 beauty realism and high-end IMVU/The Sims virtual aesthetics. Clearly a fictional digital avatar and not a real photograph. Hyper-detailed virtual influencer design with stylized CGI beauty proportions, luxury editorial aesthetics, advanced cinematic lighting, ultra-polished 3D rendering, and “TEZZA PROMPTS” text at the bottom center in elegant minimalist typography.
+
+CAMERA & COMPOSITION
+Vertical 4:5 aspect ratio intimate lifestyle portrait. Medium full-body framing capturing a female, male, and female child together on a beach. Slightly elevated eye-level camera angle emphasizing all faces, upper bodies, and their affectionate connection. The male occupies the center of the composition while carrying the child comfortably on his shoulders. The female stands closely beside him, embracing him affectionately from the side. The child remains positioned above the male’s head, facing toward the ocean. Sharp focus on all faces with soft cinematic depth of field. Cozy luxury family lifestyle composition inspired by premium female hood editorials.
+
+POSE & BODY POSITIONING
+Family avatars standing closely together in a naturally relaxed posture while gently embracing. The male supports the female child securely on his shoulders, with his hands holding her legs in a protective and natural position. The female stands beside him with her body turned slightly inward, wrapping her arms affectionately around him. Their bodies remain closely connected, creating an intimate and protective family composition with realistic anatomy and natural interaction.
+
+HEAD POSITION & GAZE
+Adult avatars keep their heads naturally aligned while facing slightly toward the child and one another with relaxed, gentle expressions. The female rests close to the male and looks toward the camera with a soft affectionate expression. The male turns his face slightly toward the child with a calm protective gaze. The child sits comfortably above the male’s shoulders while looking toward the ocean with an innocent, curious expression. All maintain relaxed neck positioning and effortless natural alignment.
+
+FEMALE AVATAR
+
+FACIAL EXPRESSION
+Warm and elegant facial expression with a soft natural smile. Calm luxury-editorial mood with affectionate family lifestyle aesthetics and polished social-media influencer energy.
+
+FACE & IDENTITY
+Adult female CGI avatar with delicate feminine facial structure, soft jawline, symmetrical facial proportions, smooth pale skin tone, large almond-shaped eyes, naturally shaped lips, slim nose bridge, and softly sculpted cheekbones. Skin rendering contains realistic texture, subtle pores, luminous highlights, and refined beauty realism while maintaining a stylized CGI avatar appearance instead of photoreal human rendering.
+
+HAIR
+Long, light blonde hair styled in a neat high bun with a smooth finish and a few soft loose strands framing the face. Hair features realistic strand definition, subtle tonal variation, natural movement, soft shine, and advanced Blender-style hair rendering.
+
+ACCESSORIES & DETAILS
+Minimal delicate jewelry with refined luxury aesthetics and realistic Blender material rendering. If visible, include a subtle gold chain necklace with a small understated pendant resting naturally on her chest.
+
+OUTFIT
+Fitted white sleeveless crop top featuring realistic cotton textile texture, natural folds, subtle stitching, smooth fabric draping, and elegant casual luxury styling. High-waisted white bottoms complete the coordinated beach outfit.
+
+BODY & PHYSIQUE
+Slim youthful feminine physique with graceful shoulders, natural feminine anatomy, relaxed posture, elegant body positioning, balanced proportions, and premium Blender CGI contour shading.
+
+SKIN & REALISM
+Ultra-detailed Seedream 5.0 skin rendering with realistic pores, subtle glossy highlights, hydrated skin sheen, and physically accurate subsurface scattering. Soft natural daylight creates delicate highlights across the face, cheeks, neck, shoulders, and hands. Natural CGI skin texture without excessive smoothing, maintaining polished Blender-style material realism.
+
+MALE AVATAR
+
+FACIAL EXPRESSION
+Relaxed masculine facial expression with calm protective energy and subtle warmth. Expression conveys affection, emotional control, cinematic realism, and polished family-lifestyle aesthetics without exaggerated emotion. Modern editorial mood with intimate social-media energy and naturally masculine presence.
+
+FACE & IDENTITY
+Adult male CGI avatar with sharp masculine facial structure, defined jawline, sculpted cheekbones, expressive brown eyes, thick naturally groomed eyebrows, narrow nose bridge, naturally full lips, trimmed beard concentrated along the jawline and chin area, and balanced symmetrical facial proportions. Facial identity maintains the established avatar’s jaw structure, beard density, eye spacing, lip proportions, hairstyle styling, skin tone, and masculine beauty aesthetics. Hyper-detailed Seedream 5.0 skin rendering combined with polished IMVU/Sims-inspired CGI realism while remaining clearly fictional and digitally generated instead of photoreal human appearance.
+
+HAIR
+Short black hair with purple highlights and natural textured styling, realistic strand definition, and subtle volume concentrated around the top of the head and forehead area. Individual strands contain soft natural reflections, realistic depth, and advanced Blender-style hair simulation with realistic texture separation.
+
+ACCESSORIES & DETAILS
+Simple minimalist accessories with realistic metallic reflections. If visible, include a subtle silver wedding band on his finger. Minimalist family-lifestyle styling.
+
+OUTFIT
+Classic white long-sleeve sweatshirt made of premium cotton fabric, featuring realistic textile texture, natural folds, clean stitching, and comfortable casual styling. White trousers complete the coordinated beach outfit.
+
+BODY & PHYSIQUE
+Fit masculine physique with broad shoulders, toned arms, and balanced proportions, featuring premium Blender CGI contour shading. His body posture remains stable and protective while carrying the child on his shoulders.
+
+SKIN & REALISM
+Ultra-detailed Seedream 5.0 skin rendering with realistic pores, hydrated skin sheen, subtle glossy highlights, and physically accurate subsurface scattering. Soft natural daylight reflections appear across the forehead, nose bridge, cheeks, shoulders, hands, and arms, creating realistic cinematic outdoor portraiture. Natural CGI skin texture maintains polished Blender-style material realism without excessive smoothing while preserving luxury-avatar aesthetics.
+
+FEMALE BABY AVATAR
+
+FACIAL EXPRESSION
+The female child exhibits an innocent and curious expression, looking toward the ocean with wide expressive eyes. Her expression is calm and slightly serious while maintaining soft childhood wonder and natural tenderness. The facial emotion should remain subtle and realistic.
+
+FACE & IDENTITY
+Female child CGI avatar with a rounded youthful face, soft chubby cheeks, a small delicate chin, large expressive eyes with fine dark eyelashes, soft eyebrows, a small nose, and naturally shaped lips. Her skin is exceptionally soft and fair with delicate warm undertones, natural rosy highlights on the cheeks, and subtle realistic complexion variation.
+
+HAIR
+Soft light blonde hair styled naturally in a short, softly tousled style with fine loose strands framing the face. The hair features subtle wave patterns, delicate baby hairs, natural density variation, and advanced Blender-style strand simulation, maintaining a delicate and age-appropriate silhouette.
+
+ACCESSORIES & DETAILS
+Simple child-appropriate details with soft pastel styling. Avoid excessive jewelry or mature styling. Maintain a delicate, innocent, and natural child-avatar appearance.
+
+OUTFIT
+Soft white long-sleeve top featuring premium cotton fabric texture, natural folds, smooth fabric draping, and delicate casual styling. Light gray shorts complete the comfortable beach outfit.
+
+BODY & PHYSIQUE
+Realistic young-child physique with naturally rounded arms, soft limbs, balanced torso proportions, smooth contours of childhood fat, and age-appropriate anatomy. The child sits comfortably on the male avatar’s shoulders with natural leg positioning and believable body weight. The body structure maintains the refined realism of computer graphics and the natural features of a young female child. The proportions emphasize innocence, delicacy, and authenticity.
+
+SKIN & REALISM
+Ultra-detailed Seedream 5.0 skin rendering with realistic softness, subtle complexion variation, delicate infant skin texture, hydrated highlights, natural translucency, and physically accurate subsurface scattering. Skin appears smooth, healthy, and luminous while preserving realistic infant characteristics and premium CGI avatar aesthetics.
+
+LIGHTING
+Soft natural outdoor daylight enters from the front and side, creating delicate highlights across the skin, hair, clothing, and surrounding beach while producing smooth realistic shadows. Gentle late-afternoon sunlight enhances realistic facial rendering, textile materials, skin translucency, and cinematic editorial atmosphere.
+Warm golden highlights appear across the family and hair without harsh contrast or artificial flash. The lighting should preserve the soft, affectionate mood of a premium outdoor family portrait.
+
+ENVIRONMENT
+Outdoor beach environment featuring a softly visible blue sky, ocean waves, wet sand, and a peaceful coastal background. Minimalist natural styling, realistic water and shoreline details, subtle depth of field, and elegant luxury family lifestyle ambiance. The background remains softly blurred with cinematic depth of field, keeping the family as the central visual focus.
+
+MOOD & AESTHETIC
+Luxury family editorial blended with premium beach lifestyle photography, cozy natural atmosphere, emotional warmth, intimate connection, modern minimalist aesthetics, polished CGI realism, refined influencer lifestyle, sophisticated storytelling, and high-end virtual-avatar beauty rendering.
+
+STYLE & RENDER QUALITY
+Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired beauty repaint style, high-fidelity family avatar rendering, realistic depth of field, glossy beauty aesthetic, polished virtual influencer atmosphere, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI avatar aesthetics instead of a real photograph.
+
+        
+        
+      </div>
+      <button class="action-btn" onclick="copyPrompt('main-prompt')">
+        COPIAR PROMPT
+      </button>
+    </div>
+
+    <footer>
+      <strong>MARQUE @jimenez.vu</strong>
+      <br><br>
+      IZACK JIMENEZ • TEZZA PROMPTS — Conteúdo protegido.
+    </footer>
+  </div>
+
+  <div id="copy-toast">PROMPT COPIADO COM SUCESSO</div>
+
+  <audio id="crowd-sound" src="https://www.myinstants.com/media/sounds/as_monaco_goal_song_-7817147000628296257.mp3" preload="auto"></audio>
+
+  <script>
+    document.body.addEventListener('click', function() {
+        const sound = document.getElementById("crowd-sound");
+        sound.load();
+    }, { once: true });
+
+    async function copyPrompt(id) {
+      const el = document.getElementById(id);
+      try {
+        await navigator.clipboard.writeText(el.innerText);
+        startCelebration();
+      } catch(err) {
+        const textArea = document.createElement("textarea");
+        textArea.value = el.innerText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        startCelebration();
+      }
+    }
+
+    function startCelebration() {
+      let confetti = document.getElementById("dynamic-confetti");
+      if (!confetti) {
+        confetti = document.createElement("img");
+        confetti.id = "dynamic-confetti";
+        confetti.className = "confetti-dynamic";
+        // Atualizado para o novo link de confetes enviado pelo usuário
+        confetti.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo5aTRxdWU0NW42bDBlZmwycnc2a3Zma2N2YjBocWZkbzNreGdpaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/khHKk128ynHkfscTtH/giphy.gif";
+        document.body.appendChild(confetti);
+      }
+      
+      const toast = document.getElementById("copy-toast");
+      toast.style.display = "block";
+      
+      const sound = document.getElementById("crowd-sound");
+      sound.currentTime = 0;
+      sound.play();
+
+      setTimeout(() => {
+        toast.style.display = "none";
+        if (confetti) {
+            confetti.remove();
+        }
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
